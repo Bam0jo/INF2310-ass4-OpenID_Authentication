@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{user.displayName}}'s Profile</title>
+</head>
+<body>
+
+    <h1>Update Your Profile, MR.{{user.displayName}} </h1>
+
+    {% if result != None %}
+        <div style="margin-bottom: 12px; padding: 7px; background-color: lightgray">
+            {% if result.ok %}
+                Profile stored!
+            {% else %}
+                <div>{{result.text}}</div>
+            {% endif %}
+        </div>
+    {% endif %}
+
+
+    <form method="post">
+        <input type="text" name="id" style="visibility: hidden;"
+        value="{{user.id}}">
+        <br>
+        <label for="title">User ID </label><br>
+        {{user.id}}
+        <br>
+        <br>
+<!-- Removed due to insuffecient privileges -->
+<!--         
+        <label for="title">Display Name</label><br>
+        <input type="text" name="displayName"
+               value="{{user.displayName}}"/>
+        <br>
+
+        <label for="title">Given Name</label><br>
+        <input type="text" name="givenName"
+               value="{{user.givenName}}" />
+        <br>
+
+        <label for="title">Surname</label><br>
+        <input type="text" name="surname"
+               value="{{user.surname}}" />
+        <br> 
+-->
+
+        <!-- <label for="title">Mail</label><br>
+        <input type="text" name="mail"
+               value="{{user.mail}}" />
+        <br><br> -->
+
+        <label for="title">Phonenr</label><br>
+        <input type="text" name="mobilePhone"
+               value="{{user.mobilePhone}}" />
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+<div style="padding-top: 2rem">
+<a href="/">back</a>
+</div>
+
+<!-- Print json -->
+<pre> {{ user |tojson(indent=4) }}</pre>
+
+</body>
+</html>
