@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>INF-2310 Assignment 3</title>
+    <title>INF-2310 Assignment 4</title>
 </head>
 <body>
+    {% if user %}
     <h1>Welcome {{ user.preferred_username }}</h1>
 
     <h2>Menu</h2>
@@ -13,8 +14,23 @@
         <li><a href='/profile'>Edit Profile</a></li>
         <li><a href="/logout">Logout</a></li>
     </ul>
-
-
     <pre>{{ user |tojson(indent=4) }}</pre>
+
+
+    {% else %}
+    <h1>Welcome Mr or Ms person!</h1>
+    To view this page you need to Log in
+    <br>
+    <br>
+    <br>
+
+    <a href="/login">
+        <button> Sign in here </button>
+    </a>
+
+
+
+    {% endif %}
+
 </body>
 </html>

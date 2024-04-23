@@ -109,13 +109,13 @@ def logout():
 
 
 
-
 @app.route("/")
 def index():
     # TODO: use the auth object to get the profile of the logged in user.
 
-    if not auth.get_user():
-        return redirect("/login")
+    # if not auth.get_user():
+    #     return redirect("/login")
+    
     
     return render_template('index.html', user=auth.get_user())
 
@@ -131,7 +131,7 @@ def get_profile():
 
     # TODO: Check that the user is logged in and add credentials to the http request.
     if not auth.get_user():
-        return redirect("/login")
+        return redirect("/")
     
     token = auth.get_token_for_user(SCOPES)
 
@@ -155,7 +155,7 @@ def post_profile():
 
     # TODO: check that the user is logged in and add credentials to the http request.
     if not auth.get_user():
-        return redirect("/login")
+        return redirect("/")
 
     token = auth.get_token_for_user(SCOPES)
     result = requests.patch(
@@ -182,7 +182,7 @@ def get_users():
     # TODO: Check that user is logged in and add credentials to the request.
 
     if not auth.get_user():
-        return redirect("/login")
+        return redirect("/")
 
 
     token = auth.get_token_for_user(SCOPES)
@@ -194,4 +194,4 @@ def get_users():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
